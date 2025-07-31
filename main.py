@@ -19,7 +19,7 @@ def welcome_home():
 
 @app.exception_handler(404)
 def error(request: Request):
-    return HTMLResponse(content="404 NOT FOUND")
+    return HTMLResponse(content="404 NOT FOUND", status_code=404)
 
 class PostDetails(BaseModel):
     author: str
