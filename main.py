@@ -1,8 +1,9 @@
 import datetime
-import json
-from fastapi import FastAPI, requests
+from http import HTTPStatus
+
+from fastapi import FastAPI
 from pydantic.v1 import BaseModel
-from starlette.responses import Response, JSONResponse, HTMLResponse, PlainTextResponse
+from starlette.responses import Response, HTMLResponse, PlainTextResponse
 from starlette.requests import Request
 
 app = FastAPI()
@@ -27,7 +28,7 @@ class PostDetails(BaseModel):
     creation_datetime: datetime
 
 posts_memorized: list[PostDetails]
-@app.post("/posts")
+@app.post("/posts", status_code=201)
 def create_post(new_posts: list[PostDetails]):
     posts_memorized.extend(new_posts)
 
